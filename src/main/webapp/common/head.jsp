@@ -45,7 +45,13 @@
 				<li><a href="../member/loginForm">로그인</li>
 				<li><a href="../member/memberinput">회원가입</a></li>
 				</c:if>
-				<c:if test = "${sessionScope.id!=null}">
+				
+					<c:if test = "${sessionScope.id!=null}">
+                    	<c:if test="${sessionScope.adminchk==1}">
+                    
+                        <li><a href="/admin/main">관리자 페이지</a></li>
+                    </c:if>
+			
 				<li> <a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
 				
 				

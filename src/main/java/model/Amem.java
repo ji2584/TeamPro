@@ -22,6 +22,7 @@ picture varchar(200));
 	private String address;
 	private String bank;
 	private String account;
+	private String adminchk;
 	public String getId() {
 		return id;
 	}
@@ -76,12 +77,18 @@ picture varchar(200));
 	public void setAccount(String account) {
 		this.account = account;
 	}
+	public String getAdminchk() {
+		return adminchk;
+	}
+	public void setAdminchk(String adminchk) {
+		this.adminchk = adminchk;
+	}
 	@Override
 	public String toString() {
-		return "KicMember [id=" + id + ", nickname=" + nickname + ", pass=" + pass + ", name=" + name + ", tel=" + tel
-				+ ", email=" + email + ", address=" + address + ", bank=" + bank + ", account=" + account + "]";
+		return "Amem [id=" + id + ", nickname=" + nickname + ", pass=" + pass + ", name=" + name + ", tel=" + tel
+				+ ", email=" + email + ", address=" + address + ", bank=" + bank + ", account=" + account
+				+ ", adminchk=" + adminchk + "]";
 	}
-	
 	
 	
 	

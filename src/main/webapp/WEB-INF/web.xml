@@ -28,6 +28,7 @@
     <!--  url과 view(jsp위치)는 다른 폴더를 사용해야한다 -->
       <url-pattern>/WEB-INF/view/member/*</url-pattern>
       <url-pattern>/WEB-INF/view/board/*</url-pattern>
+      <url-pattern>/WEB-INF/view/admin/*</url-pattern>
     <include-prelude>/common/head.jsp</include-prelude>
       <include-coda>/common/footer.jsp</include-coda>
     </jsp-property-group>

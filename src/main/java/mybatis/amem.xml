@@ -5,6 +5,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="amem">
 	<insert id="memberInsert" parameterType="Amem">
 		insert into amem values (#{id}, #{pass} , #{name},
-		#{gender} , #{tel} , #{email} , #{picture})
+		#{gender} , #{tel} , #{email} , #{picture},#{adminchk})
 	</insert>
 </mapper>
