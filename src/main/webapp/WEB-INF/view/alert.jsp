@@ -8,7 +8,7 @@
 </head>
 <body>
 <script>
-alert("${msg}")
+alert("${msg}");
 location.href="${pageContext.request.contextPath}${url}"
 </script>
 </body>

@@ -52,10 +52,10 @@ function win_upload(){
          <div class="input-form col-md-12 mx-auto">
             <h4 class="mb-3">회원정보수정</h4>
             <form class="validation-form" novalidate  action="memberUpdatePro" method="post" name="f" >
-            <input type = "hidden" name = "picture" value="${mem.picture}">   
+            <input type = "hidden" name = "picture" value="">   
                               <div class="row">
                   <div class="col-md-3 mb-3">
-                     <label for="id">사진</label> <img src="${pageContext.request.contextPath}/image/member/picture/${mem.picture}"
+                     <label for="id">사진</label> <img src=""
                             width="100px"  height="120px" id ="pic">
                      <a class="btn btn-primary  btn-block" href="javascript:win_upload()">사진업로드</a>
                      
@@ -66,13 +66,13 @@ function win_upload(){
                   <div class="row">
                   <div class="col-md-6 mb-3">
                      <label for="id">아이디</label> <input type="text"
-                        class="form-control" id="id" placeholder="아이디" value="${mem.id}"
+                        class="form-control" id="id" placeholder="아이디" value="${amem.id}"
                          readonly name="id">
                      <div class="invalid-feedback">아이디을 입력해주세요.</div>
                   </div>
                   <div class="col-md-6 mb-3">
                      <label for="name">이름</label> <input type="text"
-                        class="form-control" id="name" placeholder="" value="${mem.name}"   name="name"
+                        class="form-control" id="name" placeholder="" value="${amem.name}"   name="name"
                         required>
                      <div class="invalid-feedback">이름을 입력해주세요.</div>
                   </div>
@@ -81,34 +81,24 @@ function win_upload(){
                   <div class="row">
                   <div class="col-md-6 mb-3">
                      <label for="pass">비밀번호</label> <input type="password"
-                        class="form-control" id="pass" placeholder="비밀번호" value="${mem.pass}" required  name="pass">
+                        class="form-control" id="pass" placeholder="비밀번호" value="${amem.pass}" required  name="pass">
                     <div class="invalid-feedback">비밀번호을 입력해주세요.</div> 
                   </div>
 
                </div>
                
-                  <div class="row">
-                  <div class="col-md-6 mb-3">
-                     <label for="gender">남자</label> <input type="radio"
-                         id="gender"  value="1" ${mem.gender==1?"checked":" "}  
-                         name="gender">           
-                  </div>
-                  <div class="col-md-6 mb-3">
-                     <label for="gender">여자</label> <input type="radio"
-                         id="gender" placeholder="" value="2" ${mem.gender==2?"checked":" "}    
-                         name="gender">          
-                  </div>
+                  
                </div>      
                <div class="mb-3">
                   <label for="email">이메일</label> <input type="email" name="email"
                      class="form-control" id="email" placeholder="you@example.com"
-                     required value="${mem.email}">
+                     required value="${amem.email}">
                   
                </div>
                <div class="mb-3">
                   <label for="tel">전화번호</label> <input type="text"
                      class="form-control" id="tel" placeholder="전화번호" name="tel"
-                     required value="${mem.tel}">
+                     required value="${amem.tel}">
                   
                </div>   
                     

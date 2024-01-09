@@ -46,12 +46,8 @@
 				<li><a href="../member/memberinput">회원가입</a></li>
 				</c:if>
 				
-					<c:if test = "${sessionScope.id!=null}">
-                    	<c:if test="${sessionScope.adminchk==1}">
-                    
-                        <li><a href="/admin/main">관리자 페이지</a></li>
-                    </c:if>
-			
+				<c:if test = "${sessionScope.id!=null}">
+				    
 				<li> <a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
 				
 				
@@ -62,12 +58,16 @@
                                 <ul class="sub-menu">
                                     
                                     <li><a href="../member/memberinfo">회원정보</li>
-                                    <li><a href="${pageContext.request.contextPath}/board/products?boardid=4">찜한상품</a></li>
-                                    <li><a href="${pageContext.request.contextPath}/board/products?boardid=5">판매등록상품</a></li>
-                                     <li><a href="${pageContext.request.contextPath}/board/products?boardid=6">판매완료상품</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/board/myproducts?boardid=4">찜한상품</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/board/myproducts?boardid=5">판매등록상품</a></li>
+                                     <li><a href="${pageContext.request.contextPath}/board/myproducts?boardid=6">판매완료상품</a></li>
                                 </ul>
                             </li>
+                     <c:if test="${sessionScope.admin != null}">
+    						<li><a href="/admin/main">관리자 페이지</a></li>
+					</c:if>
 				 </c:if>
+				    
 				 
 				<!-- <ul class="sub-menu">
 					<li><a href="portfolio-item.html">Portfolio Item</a></li>

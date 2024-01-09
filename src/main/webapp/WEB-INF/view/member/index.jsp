@@ -55,7 +55,7 @@ li {
 					<a href="shop-single.html">
 					<span class="onsale">Sale!</span>
 					<img src="http://s3.amazonaws.com/caymandemo/wp-content/uploads/sites/10/2015/09/10175658/j4-520x520.jpg" alt="">
-					<h3>${b.name }</h3>
+					<h3>${b.pname }</h3>
 					<span class="price"><span class="amount">$34.00</span></span>
 					</a><a href="#" class="button">Add to cart</a>
 					</li>

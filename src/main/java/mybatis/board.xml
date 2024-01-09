@@ -4,4 +4,48 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace = "board">
 
+<insert id="insertBoard" parameterType="Auction">
+    INSERT INTO auction (PNUM, PNAME, PRICE, PICTURE, SUBJECT, CONTENT, PASS, FILE1, BOARDID, REGDATE, READCNT)
+    VALUES (boardseq.nextval, #{pname}, NULL, NULL, #{subject}, #{content}, #{pass}, #{file1}, #{boardid}, sysdate, 0)
+</insert>
+
+<select id="boardList" parameterType="map" resultType="Auction">
+select * from (
+		select rownum rnum,a.*  from (
+		select * from auction where boardid = #{boardid}
+		order by pnum desc) a)
+		where rnum between #{start} and #{end}
+</select>
+
+<select id="boardCount"  resultType="int" parameterType="string">
+select nvl(count(*),0)   from auction  where boardid = #{boardid}
+</select>
+
+<select id="oneBoard" parameterType="int" resultType="Auction" >
+select * from auction where pnum = #{pnum} 
+</select>
+
+<insert id="updateBoard" parameterType="Auction">
+update auction set pname=#{pname},subject=#{subject},content=#{content},file1=#{file1} where pnum =#{pnum}
+ </insert>
+ 
+ <delete id="boardDelete"  parameterType="int">
+delete from auction where num = #{num}
+</delete>
+
+<insert id="insertComment" parameterType="map">
+    insert into boardcomment values (boardcomseq.nextval, #{num}, #{comment}, sysdate)
+</insert>
+
+<select id="commentList" parameterType="int" resultType="comment">
+select *   from boardcomment  where num = #{num} order by regdate desc
+</select>
+
 </mapper>
+
+
+
+
+
+
+
