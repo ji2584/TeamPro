@@ -22,7 +22,6 @@ picture varchar(200));
 	private String address;
 	private String bank;
 	private String account;
-	private String numberid;
 	private String adminchk;
 	public String getId() {
 		return id;
@@ -78,23 +77,19 @@ picture varchar(200));
 	public void setAccount(String account) {
 		this.account = account;
 	}
-	public String getNumberid() {
-		return numberid;
-	}
-	public void setNumberid(String numberid) {
-		this.numberid = numberid;
-	}
+	
 	public String getAdminchk() {
 		return adminchk;
 	}
 	public void setAdminchk(String adminchk) {
+		if (!adminchk.equals("1")) {adminchk=null;}
 		this.adminchk = adminchk;
 	}
 	@Override
 	public String toString() {
 		return "Amem [id=" + id + ", nickname=" + nickname + ", pass=" + pass + ", name=" + name + ", tel=" + tel
 				+ ", email=" + email + ", address=" + address + ", bank=" + bank + ", account=" + account
-				+ ", numberid=" + numberid + ", adminchk=" + adminchk + "]";
+				+ ",  adminchk=" + adminchk + "]";
 	}
 	
 

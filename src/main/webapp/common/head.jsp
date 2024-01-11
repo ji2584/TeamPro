@@ -14,6 +14,7 @@
 <link rel='stylesheet' href='../team/style.css' type='text/css' media='all'/>
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
 <link rel='stylesheet' href='../team/css/easy-responsive-shortcodes.css' type='text/css' media='all'/>
+
 </head>
 <body class="home page page-template page-template-template-portfolio page-template-template-portfolio-php">
 <div id="page">
@@ -64,7 +65,7 @@
                                 </ul>
                             </li>
                      <c:if test="${sessionScope.admin != null}">
-    						<li><a href="/admin/main">관리자 페이지</a></li>
+    						<li><a href="${pageContext.request.contextPath}/admin/main">관리자 페이지</a></li>
 					</c:if>
 				 </c:if>
 				    

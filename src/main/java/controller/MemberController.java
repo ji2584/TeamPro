@@ -93,18 +93,21 @@ public class MemberController extends MskimRequestMapping {
 
 		String msg = "아이디를 확인하세요";
 		String url = "/member/loginForm";
-		if(mem != null) { //id 존재할때
+		if(mem != null ) { //id 존재할때
 			if (pass.equals(mem.getPass())) { //login ok
 				session.setAttribute("id", id);
 				if (mem.getAdminchk().equals("1")) {
 					session.setAttribute("admin", id);
-				}
+				msg = "관리자로 로그인하셧습니다.";
+				url = "/admin/main";
+				}else {
 			msg = mem.getName() + "님이 로그인 하셨습니다.";
 		    url = "/member/index";
-			}else {
+				}} else {
 				msg = "비밀번호를 확인하세요";
 			}
 		}
+		
 		request.setAttribute("msg", msg);
 		request.setAttribute("url", url);
 		
@@ -136,7 +139,7 @@ public class MemberController extends MskimRequestMapping {
 		amem.setAddress(address);
 		amem.setBank(bank);
 		amem.setAccount(account);
-		amem.setAdminchk(adminchk);
+		
 
 		
 		System.out.println(amem);
