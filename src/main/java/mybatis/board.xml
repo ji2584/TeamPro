@@ -5,8 +5,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace = "board">
 
 <insert id="insertBoard" parameterType="Auction">
-    INSERT INTO auction (PNUM, PNAME, PRICE, PICTURE, SUBJECT, CONTENT, PASS, FILE1, BOARDID, REGDATE, READCNT)
-    VALUES (boardseq.nextval, #{pname}, NULL, NULL, #{subject}, #{content}, #{pass}, #{file1}, #{boardid}, sysdate, 0)
+    INSERT INTO auction (PNUM, PNAME, PRICE, PICTURE, SUBJECT, CONTENT, PASS, FILE1, BOARDID, REGDATE, READCNT, USERID)
+    VALUES (boardseq.nextval, #{pname}, #{price}, #{picture}, #{subject}, #{content}, #{pass}, #{file1}, #{boardid}, sysdate, 0,#{userid})
 </insert>
 
 <select id="boardList" parameterType="map" resultType="Auction">
@@ -30,7 +30,7 @@ update auction set pname=#{pname},subject=#{subject},content=#{content},file1=#{
  </insert>
  
  <delete id="boardDelete"  parameterType="int">
-delete from auction where num = #{num}
+delete from auction where pnum = #{pnum}
 </delete>
 
 <insert id="insertComment" parameterType="map">
@@ -40,6 +40,8 @@ delete from auction where num = #{num}
 <select id="commentList" parameterType="int" resultType="comment">
 select *   from boardcomment  where num = #{num} order by regdate desc
 </select>
+
+
 
 </mapper>
 

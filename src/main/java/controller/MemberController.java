@@ -27,7 +27,7 @@ import model.Auction;
 @WebServlet("/member/*")
 public class MemberController extends MskimRequestMapping {
 	 
-	
+	BoardMybatisDao bd = new BoardMybatisDao();
 	MemberMybatisDao md = new MemberMybatisDao();
 	
 	HttpSession session;
@@ -35,8 +35,12 @@ public class MemberController extends MskimRequestMapping {
 	@RequestMapping("index") //~~/board/index
 	   public String index(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		      // TODO Auto-generated method stub
-		 
-
+	
+			
+		
+		
+		
+		
 	    return "/WEB-INF/view/member/index.jsp";
 		}
 	
@@ -78,7 +82,7 @@ public class MemberController extends MskimRequestMapping {
 		
 		String login = (String) session.getAttribute("id");
 		Amem mem = md.oneMember(login);
-		request.setAttribute("mem", mem);
+		request.setAttribute("amem", mem);
 		return "/WEB-INF/view/member/memberinfo.jsp";
 	}
 	
@@ -100,7 +104,7 @@ public class MemberController extends MskimRequestMapping {
 					session.setAttribute("admin", id);
 				msg = "관리자로 로그인하셧습니다.";
 				url = "/admin/main";
-				}else {
+				}else if(mem.getAdminchk().equals("0")){
 			msg = mem.getName() + "님이 로그인 하셨습니다.";
 		    url = "/member/index";
 				}} else {
@@ -113,7 +117,6 @@ public class MemberController extends MskimRequestMapping {
 		
 		return "/WEB-INF/view/alert.jsp";
 	}
-
 	@RequestMapping("memberPro")
 	public String memberPro(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		Amem amem = new Amem();
@@ -127,8 +130,6 @@ public class MemberController extends MskimRequestMapping {
 		String address = request.getParameter("address");
 		String bank = request.getParameter("bank");
 		String account = request.getParameter("account");
-		String adminchk = request.getParameter("adminchk");
-		
 		
 		amem.setId(id);
 		amem.setNickname(nickname);
@@ -209,13 +210,10 @@ public class MemberController extends MskimRequestMapping {
 	@RequestMapping("memberDeletePro")
 	public String memberDeletePro(HttpServletRequest request, HttpServletResponse res) throws Exception {
 		
-	String login =  (String) session.getAttribute("id");
+		String login =  (String) session.getAttribute("id");
 	String pass = request.getParameter("pass");
 	
 	Amem memdb = md.oneMember(login);
-	
-	
-	
 	String msg = "탈퇴되지 않았습니다.";
 	String url ="/member/memberDeleteForm";
 

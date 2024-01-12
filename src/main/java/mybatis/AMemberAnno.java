@@ -10,10 +10,10 @@ import org.apache.ibatis.annotations.Update;
 import model.Amem;
 
 public interface AMemberAnno {
-   @Insert("insert into amem (id, nickname,pass,name,tel,email,address,bank,account)  values (#{id}, #{nickname},#{pass},#{name},#{tel},#{email},#{address},#{bank},#{account})")
+	 @Insert("insert into amem (id, nickname,pass,name,tel,email,address,bank,account,numberid)  values (#{id}, #{nickname},#{pass},#{name},#{tel},#{email},#{address},#{bank},#{account},#{numberid})")
    int insertMember(Amem amem);
 
-   @Select("select * from amem where id =#{id}")
+   @Select("select*from amem where id =#{id}")
    Amem oneMember(String id);
 
    @Update("update amem set name=#{name},tel=#{tel},email=#{email} where id =#{id}")

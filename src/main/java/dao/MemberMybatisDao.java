@@ -18,11 +18,11 @@ public class MemberMybatisDao {
 	// MybatisConnection.close() 삭제
 	private static final String NS = "amem.";
 
-	public int insertMember(Amem kicmem) throws UnsupportedEncodingException, SQLException {
+	public int insertMember(Amem amem) throws UnsupportedEncodingException, SQLException {
 
 		System.out.println("mybatis insertMember");
 
-		int num = sqlSession.getMapper(AMemberAnno.class).insertMember(kicmem);
+		int num = sqlSession.getMapper(AMemberAnno.class).insertMember(amem);
 		sqlSession.commit();
 
 		return num;

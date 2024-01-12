@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="kicModel2Pro">
+    <wb-module deploy-name="teamPro1">
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
-        <property name="context-root" value="kicModel2Pro"/>
-        <property name="java-output-path" value="/kicModel2Pro/build/classes"/>
+        <property name="context-root" value="teamPro1"/>
+        <property name="java-output-path" value="/teamPro1/build/classes"/>
     </wb-module>
 </project-modules>

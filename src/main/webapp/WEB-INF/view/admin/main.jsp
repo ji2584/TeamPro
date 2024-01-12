@@ -21,8 +21,8 @@
             <!-- gnv_area -->    
             <div class="top_gnb_area">
                 <ul class="list">    
-                    <li><a href="/member/index">메인 페이지</a></li>
-                    <li><a href="/member/logout">로그아웃</a></li>
+                    <li><a href="${pageContext.request.contextPath}/member/index">메인 페이지</a></li>
+                    <li><a href="${pageContext.request.contextPath}/member/logout">로그아웃</a></li>
                     <li>고객센터</li>            
                 </ul>
             </div>
@@ -37,7 +37,7 @@
                 <div class="admin_navi_wrap">
                     <ul>
                         <li >
-                            <a class="admin_list_01">상품 등록</a>
+                            <a class="admin_list_01" >게시물 신고</a>
                         </li>
                         <li>
                             <a class="admin_list_02">상품 목록</a>

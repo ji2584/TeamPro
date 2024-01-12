@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "cart">
+<insert id="addToAproducts" parameterType="cart">
+    INSERT INTO Aproducts (ser, userid, itemid) 
+    values (Aproduct.nextval, #{userid}, #{itemid})
+</insert>
+
+<select id="jumunList" parameterType="map" resultType="Auction">
+SELECT 
+        a.pnum, a.picture, a.pname, a.file1, a.subject, a.price, a.readcnt, TO_CHAR(a.regdate, 'yyyy-MM-dd HH24:mi:ss') AS regdate
+    FROM 
+        amem m
+    JOIN 
+        aproducts ap ON m.id = ap.userid
+    JOIN 
+        auction a ON ap.itemid = a.pnum
+    WHERE 
+        m.id = #{userId}
+    ORDER BY 
+    a.pnum DESC
+</select>
+
+   <select id="myList" parameterType="map" resultType="Auction">
+      SELECT
+            b.userid,
+            b.pnum,
+            b.picture,
+            b.pname,
+            b.file1,
+            b.subject,
+            b.price,
+            b.readcnt,
+            TO_CHAR(b.regdate, 'yyyy-MM-dd HH24:mi:ss') AS regdate
+        FROM
+            amem a
+        JOIN
+            auction b ON a.id = b.userid
+        WHERE 
+            a.id = #{loggedInUserId}
+        ORDER BY 
+            b.pnum DESC
+    </select>
+
+
+</mapper>

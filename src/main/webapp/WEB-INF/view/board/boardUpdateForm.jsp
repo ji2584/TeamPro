@@ -20,6 +20,13 @@
     <label for="pwd">비밀번호:</label>
     <input type="password" class="form-control" placeholder="Enter password" id="pwd"  name="pass">
   </div>
+  
+    <div class="form-group">
+    <label for="price">판매가격:</label>
+    <input type="text" class="form-control" placeholder="" id="price"  name="price" value=${board.price }>
+  </div>
+  
+  
   <div class="form-group">
     <label for="subject">제목:</label>
     <input type="text" class="form-control" placeholder="Enter password" id="subject"  name="subject"  value="${board.subject }">

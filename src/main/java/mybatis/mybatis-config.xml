@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.9//EN"
       <typeAlias type="model.Amem" alias="amem" />
       <typeAlias type="model.Auction" alias="auction" />
       <typeAlias type="model.Comment" alias="comment" />
-
+      <typeAlias type="model.Cart" alias="cart" />
    </typeAliases>
 
    <environments default="development">
@@ -29,6 +29,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.9//EN"
    <mappers>
       <mapper resource="mybatis/amem.xml" />
       <mapper resource="mybatis/board.xml" />
+        <mapper resource="mybatis/cart.xml" />
       <mapper class="mybatis.AMemberAnno" />
    </mappers>
 </configuration>

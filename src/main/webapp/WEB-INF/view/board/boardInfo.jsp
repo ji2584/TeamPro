@@ -3,6 +3,37 @@
    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+<script>
+    let count = ${count}
+	function enterkey(num) {
+		if (window.event.keyCode == 13) {
+			commentPro(num)
+		}
+
+	}
+
+	function commentPro(num) {
+        count=count+1
+		let comment = document.querySelector("#comment").value
+		//alert(comment)
+		const xhttp = new XMLHttpRequest()
+		let url = "${pageContext.request.contextPath}/board/boardCommentPro?comment="
+				+ comment + "&boardnum=" + num+ "&count=" + count
+		xhttp.open("GET", url, true)
+		xhttp.send()
+		xhttp.onreadystatechange = function() {
+			//	alert(this.readyState+","+ this.status)
+			if (this.readyState == 4 && this.status == 200) {
+				// 	alert("data:"+this.responseText)
+				let commentList = document.querySelector("#commentList")
+				commentList.innerHTML = this.responseText + "<br>"
+						+ commentList.innerHTML
+			}
+
+		}
+		document.querySelector("#comment").value = ""
+	}
+</script>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -55,7 +86,29 @@
                </tr>
             </table>
          
-            
+            	<div class="row">
+					<div class="col-sm-1">답변글</div>
+					<div class="col-sm-10">
+						<input type="text" class="form-control " id="comment"
+							onkeyup="enterkey('${board.pnum}')">
+					</div>
+					<div class="col-sm-1">
+						<button class="btn btn-primary "
+							onclick="commentPro('${board.pnum}')">저장</button>
+					</div>
+				</div>
+				     <c:set  var="ser"  value="${count }"/>
+				<div class="row" id="commentList">
+					<c:forEach  var="c"  items="${commentLi }">
+						<div class="col-sm-1">&nbsp;</div>
+						<div class="col-sm-1">${ser}</div>
+						<c:set  var="ser"  value="${ser-1 }"/>
+						<div class="col-sm-1">${amem.id}</div>
+						  <c:set  var="boardNum"  value="${boardNum }"/>
+						<div class="col-sm-9">${c.content }</div>
+						<div class="col-sm-1">&nbsp;</div>
+
+					</c:forEach>
             
          </div> </div>
       </div>   

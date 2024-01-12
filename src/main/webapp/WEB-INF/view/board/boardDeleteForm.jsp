@@ -43,7 +43,7 @@ body {
 				<h4 class="mb-3  center">게시물삭제</h4>
 				<form class="validation-form" novalidate action="boardDeletePro"
 				method="post">
-                     <input type="hidden" name="num" value="${num}">
+                     <input type="hidden"  name="pnum" value="${pnum}">
 					<div class="row">
 					
 						<div class="col-md-6 mb-3">

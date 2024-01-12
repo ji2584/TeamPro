@@ -15,6 +15,7 @@ public class Auction {
 		private int readcnt;	
 		private String file1;
 		private Date regdate;
+		private String userid;
 		public int getPnum() {
 			return pnum;
 		}
@@ -81,11 +82,17 @@ public class Auction {
 		public void setRegdate(Date regdate) {
 			this.regdate = regdate;
 		}
+		public String getUserid() {
+			return userid;
+		}
+		public void setUserid(String userid) {
+			this.userid = userid;
+		}
 		@Override
 		public String toString() {
 			return "Auction [pnum=" + pnum + ", pname=" + pname + ", price=" + price + ", picture=" + picture
 					+ ", subject=" + subject + ", content=" + content + ", pass=" + pass + ", boardid=" + boardid
-					+ ", readcnt=" + readcnt + ", file1=" + file1 + ", regdate=" + regdate + "]";
+					+ ", readcnt=" + readcnt + ", file1=" + file1 + ", regdate=" + regdate + ", userid=" + userid + "]";
 		}
 		
 	

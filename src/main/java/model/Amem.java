@@ -22,7 +22,18 @@ picture varchar(200));
 	private String address;
 	private String bank;
 	private String account;
+	private String numberid;
 	private String adminchk;
+	
+	
+	public String getNumberid() {
+		return numberid;
+	}
+	public void setNumberid(String numberid) {
+		this.numberid = numberid;
+	}
+
+	
 	public String getId() {
 		return id;
 	}
@@ -82,17 +93,21 @@ picture varchar(200));
 		return adminchk;
 	}
 	public void setAdminchk(String adminchk) {
-		if (!adminchk.equals("1")) {adminchk=null;}
-		this.adminchk = adminchk;
+	    if (!"1".equals(adminchk)) {
+	        // adminchk가 "1"이 아닌 경우 기본값 설정
+	        this.adminchk = "0"; // 또는 다른 적절한 기본값 설정
+	    } else {
+	        // adminchk가 "1"인 경우 그대로 설정
+	        this.adminchk = adminchk;
+	    }
 	}
 	@Override
 	public String toString() {
 		return "Amem [id=" + id + ", nickname=" + nickname + ", pass=" + pass + ", name=" + name + ", tel=" + tel
 				+ ", email=" + email + ", address=" + address + ", bank=" + bank + ", account=" + account
-				+ ",  adminchk=" + adminchk + "]";
+				+ ", numberid=" + numberid + ", adminchk=" + adminchk + "]";
 	}
 	
-
 }
 
 

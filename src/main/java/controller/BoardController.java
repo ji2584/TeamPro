@@ -15,6 +15,7 @@ import com.oreilly.servlet.MultipartRequest;
 import dao.BoardMybatisDao;
 
 import dao.MemberMybatisDao;
+import kic.mskim.Login;
 import kic.mskim.MskimRequestMapping;
 import kic.mskim.RequestMapping;
 
@@ -26,19 +27,49 @@ import model.Auction;
 @WebServlet("/board/*")
 public class BoardController extends MskimRequestMapping {
 	BoardMybatisDao bd = new BoardMybatisDao();
-
+	MemberMybatisDao md = new MemberMybatisDao();
 	HttpSession session;
 
+	
+	
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		this.session = request.getSession();
 		super.service(request, resp);
 	}
-
+	@Login(key = "id")
 	@RequestMapping("boardForm")
 	public String boardForm(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		// TODO Auto-generated method stub
+		String login = (String) session.getAttribute("id");
+		Amem mem = md.oneMember(login);
+		req.setAttribute("amem", mem);
+		
+		if (req.getParameter("boardid") != null) { // ? boardid = 3
+			session.setAttribute("boardid", req.getParameter("boardid"));
+			session.setAttribute("pageNum", "1");
+		}
+		
+		String boardid = (String) session.getAttribute("boardid");
+		if (boardid == null) boardid = "1";
+		String boardPname = "";
+		switch (boardid) {
+		case "1":
+			boardPname = "가전";
+			break;
+		case "2":
+			boardPname = "의류";
+			break;
+		case "3":
+			boardPname = "기타";
+			break;
+		case "4":
+			boardPname = "도서";
+			break;
+
+		}
+		req.setAttribute("boardPname", boardPname);
 		return "/WEB-INF/view/board/boardForm.jsp";
 	}
 
@@ -57,9 +88,11 @@ public class BoardController extends MskimRequestMapping {
 			if (boardid == null)				boardid = "1";
 		board.setBoardid(boardid);
 		
-		
+		board.setUserid(multi.getParameter("userid"));
 		board.setPname(multi.getParameter("pname"));
 		board.setPass(multi.getParameter("pass"));
+		board.setPicture(multi.getParameter("picture"));
+		board.setPrice(multi.getParameter("price"));
 		board.setSubject(multi.getParameter("subject"));
 		board.setContent(multi.getParameter("content"));
 		board.setFile1(multi.getFilesystemName("file1")); // name="file1"
@@ -98,6 +131,10 @@ public class BoardController extends MskimRequestMapping {
 		case "3":
 			boardPname = "기타";
 			break;
+		case "4":
+			boardPname = "도서";
+			break;
+	
 
 		}
 
@@ -110,7 +147,7 @@ public class BoardController extends MskimRequestMapping {
 		if (pageNum == null)
 			pageNum = "1";
 
-		int limit = 3; // 한페이장 게시글 갯수
+		int limit = 15; // 한페이장 게시글 갯수
 		int pageInt = Integer.parseInt(pageNum); // 페이지 번호
 		int boardCount = bd.boardCount(boardid); // 전체 개시글 갯수
 
@@ -144,6 +181,12 @@ public class BoardController extends MskimRequestMapping {
 	@RequestMapping("boardInfo")
 	public String boardInfo(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		// TODO Auto-generated method stub
+		
+
+		String login = (String) session.getAttribute("id");
+		Amem mem = md.oneMember(login);
+		req.setAttribute("amem", mem);
+		
 		BoardMybatisDao bd = new BoardMybatisDao();
 		int num = Integer.parseInt(req.getParameter("num"));
 		Auction board = bd.oneBoard(num);
@@ -212,7 +255,7 @@ public class BoardController extends MskimRequestMapping {
 	@RequestMapping("boardDeleteForm")
 	public String boardDeleteForm(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		// TODO Auto-generated method stub
-		req.setAttribute("pnum", req.getParameter("pnum"));
+		req.setAttribute("pnum", req.getParameter("num"));
 		return "/WEB-INF/view/board/boardDeleteForm.jsp";
 	}
 
@@ -220,7 +263,7 @@ public class BoardController extends MskimRequestMapping {
 	public String boardDeletePro(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		// TODO Auto-generated method stub
 		int num = Integer.parseInt(req.getParameter("pnum"));
-		BoardMybatisDao bd = new BoardMybatisDao();
+	
 		Auction board = bd.oneBoard(num);
 		String msg = "삭제 불가합니다";
 		String url = "/board/boardDeleteForm?num=" + num;
@@ -228,7 +271,7 @@ public class BoardController extends MskimRequestMapping {
 			int count = bd.boardDelete(num);
 			if (count > 0) {
 				msg = "게시글이 삭제 되었습니다";
-				url = "/board/boardList";
+				url = "/board/products";
 			}
 
 		} else {
@@ -258,4 +301,5 @@ public class BoardController extends MskimRequestMapping {
 		req.setAttribute("count", req.getParameter("count"));
 		return "/single/boardCommentPro.jsp";
 	}
+	
 }
